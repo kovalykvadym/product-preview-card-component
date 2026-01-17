@@ -20,6 +20,7 @@
 
     @include mobile {
       background-image: url("../../assets/images/image-product-mobile.jpg");
+      border-radius: 8px 8px 0 0;
     }
   }
 
@@ -27,7 +28,11 @@
     display: flex;
     flex-direction: column;
     row-gap: 20px;
+    border-radius: 0 8px 8px 0;
 
+    @include mobile {
+      border-radius: 0 0 8px 8px;
+    }
   }
 
   &__type {

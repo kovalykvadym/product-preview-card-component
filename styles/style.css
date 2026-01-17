@@ -323,12 +323,19 @@ html, body {
 @media (max-width: 767px) {
   .hero__preview {
     background-image: url("../../assets/images/image-product-mobile.jpg");
+    border-radius: 8px 8px 0 0;
   }
 }
 .hero__info {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+  border-radius: 0 8px 8px 0;
+}
+@media (max-width: 767px) {
+  .hero__info {
+    border-radius: 0 0 8px 8px;
+  }
 }
 .hero__type {
   font-family: var(--font-family-base);
