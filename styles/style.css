@@ -1,0 +1,396 @@
+@charset "UTF-8";
+/**
+  Нормалізація блокової моделі
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Прибираємо внутрішні відступи зліва тегам списків,
+  які мають атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Прибираємо зовнішні відступи body і двом іншим тегам,
+  у яких є атрибут class
+ */
+body,
+:where(blockquote, figure, fieldset):where([class]) {
+  margin: 0;
+}
+
+/**
+  Прибираємо зовнішні відступи вертикалі потрібним тегам,
+  у яких є атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  padding: 0;
+  border: none;
+}
+
+/**
+  Прибираємо стандартний маркер з маркованого списку,
+  який має атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляємо вертикальні зовнішні відступи параграфа,
+  оголошуємо локальну змінну для зовнішнього відступу вниз,
+  щоб уникнути взаємодії з більш складним селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Зовнішній відступ вниз для параграфа без атрибута class,
+  який розташований не останнім серед своїх сусідніх елементів
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Спрощуємо роботу з зображеннями та відео
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Успадковуємо властивості шрифту для полів введення
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Зійде на користь у більшості ситуацій
+    (коли, наприклад, потрібно буде «притиснути» футер до низу сайту)
+   */
+  height: 100%;
+  /**
+    Прибираємо стрибок інтерфейсу по горизонталі
+    при появі / зникненні скроллбара
+   */
+  scrollbar-gutter: stable;
+  /**
+    Плавний скрол
+   */
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Згодиться в більшості ситуацій
+    (коли, наприклад, потрібно буде «притиснути» футер до низу сайту)
+   */
+  min-height: 100%;
+  /**
+    Уніфікований інтерліньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Нормалізація висоти елемента посилання під час його перевірки в DevTools
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведенні на елемент
+ */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Прибирає сіре підсвічування при тапі на мобільних пристроях (iOS/Android)
+ */
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/**
+  Приводимо до єдиного кольору svg-елементи
+  (за винятком тих, у яких вже вказано
+  атрибут fill із значенням “none” або починається з “url”)
+ */
+:where([fill]:not([fill=none],
+[fill^=url])) {
+  fill: currentColor;
+}
+
+/**
+  Приводимо до єдиного кольору svg-елементи
+  (за винятком тих, у яких вже вказано
+  атрибут stroke зі значенням “none”)
+ */
+:where([stroke]:not([stroke=none],
+[stroke^=url])) {
+  stroke: currentColor;
+}
+
+/**
+  Виправляємо баг затримки зміни кольору при взаємодії з svg-елементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Приведення рамок таблиць до класичного вигляду 'collapse'
+ */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Видаляємо всі анімації та переходи для людей,
+  які вважають за краще їх не використовувати
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+@font-face {
+  font-family: "Fraunces";
+  src: url("../assets/fonts/Fraunces/Fraunces-Bold.woff2") format("woff2"), url("../assets/fonts/Fraunces/Fraunces-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat/Montserrat-Bold.woff2") format("woff2"), url("../assets/fonts/Montserrat/Montserrat-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat/Montserrat-Medium.woff2") format("woff2"), url("../assets/fonts/Montserrat/Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --color-green-500: #3c8067;
+  --color-green-700: #1b4133;
+  --color-black: #1c232b;
+  --color-gray: #6c7289;
+  --color-cream: #f2ebe3;
+  --color-white: #ffffff;
+  --font-family-base: "Montserrat", sans-serif;
+  --font-family-alt: "Fraunces", sans-serif;
+  --container-width-base: 600px;
+  --container-width-alt: 237px;
+  --container-padding: 32px;
+  --transition-duration: 0.2s !important;
+}
+
+.container {
+  max-width: calc(var(--container-width-base));
+  margin-inline: auto;
+}
+
+.container-alt {
+  max-width: calc(var(--container-width-alt) + var(--container-padding) * 2);
+  margin-inline: auto;
+  padding: var(--container-padding);
+  background-color: var(--color-white);
+}
+@media (max-width: 767px) {
+  .container-alt {
+    max-width: 100%;
+  }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+body {
+  font-size: clamp(14px, 1.0625vw, 17px);
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  color: var(--color-gray);
+  background-color: var(--color-cream);
+}
+
+a, button, input, textarea, svg * {
+  transition-duration: var(--transition-duration);
+}
+
+h1, h2 {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: var(--font-family-alt);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.main {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 767px) {
+  .main {
+    display: block;
+  }
+}
+
+.hero__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 767px) {
+  .hero__container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    margin-top: 80px;
+    padding-inline: 12px;
+  }
+}
+.hero__preview {
+  background-image: url("../../assets/images/image-product-desktop.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 8px 0 0 8px;
+}
+@media (max-width: 767px) {
+  .hero__preview {
+    background-image: url("../../assets/images/image-product-mobile.jpg");
+  }
+}
+.hero__info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.hero__type {
+  font-family: var(--font-family-base);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: var(--color-gray);
+  text-transform: uppercase;
+}
+.hero__title {
+  font-family: var(--font-family-alt);
+  font-weight: 700;
+  font-size: 34px;
+  color: var(--color-black);
+  line-height: 1;
+}
+.hero__description {
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-gray);
+  line-height: 1.5;
+}
+.hero__price {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  column-gap: 12px;
+}
+.hero__price-actual {
+  font-family: var(--font-family-alt);
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--color-green-500);
+  line-height: 1;
+}
+.hero__price-outdated {
+  font-family: var(--font-family-base);
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--color-gray);
+}
+.hero__button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  color: white;
+  background-color: var(--color-green-500);
+  border-radius: 6px;
+  padding-block: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+  max-height: 48px;
+}
+
+.button__text {
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-white);
+}
+
+/*# sourceMappingURL=style.css.map */

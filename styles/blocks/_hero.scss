@@ -1,0 +1,95 @@
+.hero {
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, 1fr);
+      margin-top: 80px;
+      padding-inline: 12px;
+    }
+  }
+
+  &__preview {
+    background-image: url("../../assets/images/image-product-desktop.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px 0 0 8px;
+
+    @include mobile {
+      background-image: url("../../assets/images/image-product-mobile.jpg");
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+  }
+
+  &__type {
+    font-family: var(--font-family-base);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--color-gray);
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-family: var(--font-family-alt);
+    font-weight: 700;
+    font-size: 34px;
+    color: var(--color-black);
+    line-height: 1;
+  }
+
+  &__description {
+    font-family: var(--font-family-base);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--color-gray);
+    line-height: 1.5;
+  }
+
+  &__price {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: 12px;
+
+    &-actual {
+      font-family: var(--font-family-alt);
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--color-green-500);
+      line-height: 1;
+    }
+
+    &-outdated {
+      font-family: var(--font-family-base);
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--color-gray);
+
+    }
+  }
+
+  &__button {
+    @include reset-button;
+
+    color: white;
+    background-color: var(--color-green-500);
+    border-radius: 6px;
+    padding-block: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+    max-height: 48px;
+
+  }
+}

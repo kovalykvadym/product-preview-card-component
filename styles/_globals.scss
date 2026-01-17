@@ -1,0 +1,35 @@
+body {
+  @include fluid-text(17, 14);
+
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  color: var(--color-gray);
+  background-color: var(--color-cream);
+}
+
+a, button, input, textarea, svg * {
+  transition-duration: var(--transition-duration);
+}
+
+h1, h2 {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: var(--font-family-alt);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.main {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  @include mobile {
+    display: block;
+  }
+}

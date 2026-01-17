@@ -1,0 +1,28 @@
+.container {
+  max-width: calc(var(--container-width-base));
+  margin-inline: auto;
+}
+
+.container-alt {
+  max-width: calc(var(--container-width-alt) + var(--container-padding) * 2);
+  margin-inline: auto;
+  padding: var(--container-padding);
+  background-color: var(--color-white);
+
+  @include mobile {
+    max-width: 100%;
+  }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
