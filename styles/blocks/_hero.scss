@@ -96,5 +96,9 @@
     column-gap: 8px;
     max-height: 48px;
 
+
+    @include hover {
+      background-color: var(--color-green-700);
+    }
   }
 }

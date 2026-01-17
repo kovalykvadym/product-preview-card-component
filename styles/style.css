@@ -392,6 +392,16 @@ html, body {
   column-gap: 8px;
   max-height: 48px;
 }
+@media (hover: hover) {
+  .hero__button:hover {
+    background-color: var(--color-green-700);
+  }
+}
+@media (hover: none) {
+  .hero__button:active {
+    background-color: var(--color-green-700);
+  }
+}
 
 .button__text {
   font-family: var(--font-family-base);
